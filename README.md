@@ -1,0 +1,2 @@
+# EncriptadorAllura
+Codigo del encriptador
