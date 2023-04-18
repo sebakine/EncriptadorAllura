@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Encriptador</title>
+	<meta charset="UTF-8">
+	<style>
+		/* Estilos CSS */
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f5f5f5;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		input {
+			padding: 5px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+			background-color: #fff;
+			font-size: 16px;
+			width: 250px;
+			margin-bottom: 10px;
+		}
+		button {
+			padding: 10px 20px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+			background-color: #3498db;
+			color: #fff;
+			font-size: 18px;
+			cursor: pointer;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Encriptador de texto y números</h1>
+	<form>
+		<label for="texto">Texto a encriptar:</label>
+		<input type="text" id="texto">
+		<label for="numero">Número a encriptar:</label>
+		<input type="number" id="numero">
+		<button type="button" onclick="encriptar()">Encriptar</button>
+	</form>
+	<script>
+		function encriptar() {
+			// Obtener los valores del texto y el número
+			var texto = document.getElementById("texto").value;
+			var numero = document.getElementById("numero").value;
+			// Encriptar el texto utilizando el número como clave
+			var resultado = "";
+			for (var i = 0; i < texto.length; i++) {
+				var codigo = texto.charCodeAt(i);
+				if (codigo >= 65 && codigo <= 90) {
+					resultado += String.fromCharCode((codigo - 65 + numero) % 26 + 65);
+				} else if (codigo >= 97 && codigo <= 122) {
+					resultado += String.fromCharCode((codigo - 97 + numero) % 26 + 97);
+				} else if (codigo >= 48 && codigo <= 57) {
+					resultado += String.fromCharCode((codigo - 48 + numero) % 10 + 48);
+				} else {
+					resultado += texto.charAt(i);
+				}
+			}
+			// Mostrar el resultado en la consola
+			console.log(resultado);
+		}
+	</script>
+</body>
+</html>
